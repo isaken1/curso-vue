@@ -13,9 +13,7 @@
                 @nomeMudou="nome = $event" 
                 :reiniciarFn="reiniciarNome"/>
             <app-usuario-editar 
-                :idade="idade"
-                @idadeMudou="idade = $event"
-                :alterarFn="reiniciarIdade" />
+                :idade="idade" />
         </div>
     </div>
 </template>
