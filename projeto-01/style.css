@@ -47,7 +47,7 @@ html {
     background-color: green;
 }
 
-.life-bar .life.danger {
+.life-bar .life .danger {
     background-color: red;
 }
 
