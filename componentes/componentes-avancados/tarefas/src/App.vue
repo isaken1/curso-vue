@@ -1,9 +1,9 @@
 <template>
 	<div id="app">
 		<h1>Tarefas</h1>
-		<Progress />
+		<Progress :progress="progress" />
 		<TaskAdder />
-		<TaskDisplay />
+		<TaskDisplay :tasks="this.tasks" :stateChangedCallback="changeTaskState" />
 	</div>
 </template>
 
@@ -11,9 +11,37 @@
 import Progress from './components/Progress'
 import TaskAdder from './components/AddTask'
 import TaskDisplay from './components/TaskDisplay'
+import bus from './bus'
 
 export default {
-	components: { Progress, TaskAdder, TaskDisplay }
+	components: { Progress, TaskAdder, TaskDisplay },
+	data() {
+		return {
+			tasks: []
+		}
+	}, 
+	computed: {
+		progress() {
+			let completedTasks = this.tasks.filter((task) => task.isDone == 'false').length
+			return (completedTasks / this.tasks.length)
+		}
+	},
+	methods: {
+		addTask(newTask) {
+			if (this.tasks.filter(task => newTask.description === task.description).length == 0) {
+				this.tasks.push(newTask)
+			}
+		},
+		removeTask(index) {
+			this.tasks.splice(i, 1)
+		},
+		changeTaskState(index) {
+			this.tasks[index].isDone = !this.tasks[index].isDone
+		}
+	}, 
+	created() {
+		bus.onTaskAdded(this.addTask)
+	}
 }
 </script>
 

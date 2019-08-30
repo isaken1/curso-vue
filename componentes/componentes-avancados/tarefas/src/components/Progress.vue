@@ -7,11 +7,7 @@
 
 <script>
 export default {
-    data() {
-        return {
-            progress: 0
-        }
-    }
+    props: { progress: { type: Number, default: 0 } }
 }
 </script>
 

@@ -1,13 +1,25 @@
 <template>
     <div class="wrapper">
-        <input class="task-name" type="text" placeholder="Adicionar atividade">
-        <button class="task-add">+</button>
+        <input v-model="taskDescription" class="task-name" type="text" 
+            placeholder="Adicionar atividade" @keydown.enter="addTask">
+        <button @click="addTask" class="task-add">+</button>
     </div>
 </template>
 
 <script>
-export default {
+import bus from '@/bus'
 
+export default {
+    data() {
+        return {
+            taskDescription: ''
+        }
+    },
+    methods: {
+        addTask(task) {
+            bus.addTask({ description: this.taskDescription, isDone: false })
+        }
+    }
 }
 </script>
 
