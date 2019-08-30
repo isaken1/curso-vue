@@ -3,15 +3,17 @@
 		<h1>Tarefas</h1>
 		<Progress />
 		<TaskAdder />
+		<TaskDisplay />
 	</div>
 </template>
 
 <script>
 import Progress from './components/Progress'
 import TaskAdder from './components/AddTask'
+import TaskDisplay from './components/TaskDisplay'
 
 export default {
-	components: { Progress, TaskAdder }
+	components: { Progress, TaskAdder, TaskDisplay }
 }
 </script>
 
