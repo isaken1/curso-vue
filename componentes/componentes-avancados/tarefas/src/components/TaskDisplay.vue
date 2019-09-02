@@ -9,13 +9,12 @@
 </template>
 
 <script>
-import TaskCard from './Task'
-import bus from '@/bus'
+import TaskCard from './Task.vue'
 
 export default {
     components: { TaskCard },
     props: { 
-        tasks: Array,
+        tasks: { type: Array, required: true },
         stateChangedCallback: Function
     },
 }
@@ -24,7 +23,7 @@ export default {
 <style>
 
     #no-tasks {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
         color: #AAA;
     }
 
@@ -32,6 +31,10 @@ export default {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
+    }
+
+    .task-wrapper .task {
+        margin: 10px;
     }
 
 </style>

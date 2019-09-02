@@ -16,29 +16,25 @@ export default {
         position: relative;
         width: 80%;
         height: 30px;
-        border: 2px solid #AAA;
-        border-radius: 25px;
-        text-align: center;
-        overflow: hidden;
+        border: 1px solid #AAA;
+        color: #FFF;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .progress-bar .progress {
         position: absolute;
-        z-index: 0;
-        top: 0;
-        left: 0;
-        display: flex;
-        justify-content: center;
         height: 100%;
         background-color: green;
-        border-radius: 25px;
+        border-radius: 8px;
+        align-self: flex-start;
     }
 
     .progress-bar .progress-value {
-        display: inline-block;
-        position: relative;
-        text-align: center;
-        height: 100%;
         font-size: 1.5rem;
+        z-index: 1;
     }
 </style>

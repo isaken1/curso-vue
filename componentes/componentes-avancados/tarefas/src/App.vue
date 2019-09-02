@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import Progress from './components/Progress'
-import TaskAdder from './components/AddTask'
-import TaskDisplay from './components/TaskDisplay'
+import Progress from './components/Progress.vue'
+import TaskAdder from './components/AddTask.vue'
+import TaskDisplay from './components/TaskDisplay.vue'
 import bus from './bus'
 
 export default {
@@ -22,8 +22,16 @@ export default {
 	}, 
 	computed: {
 		progress() {
-			let completedTasks = this.tasks.filter((task) => task.isDone == 'false').length
-			return (completedTasks / this.tasks.length)
+			let completedTasks = this.tasks.filter((task) => task.isDone == true).length
+			return (completedTasks / this.tasks.length) * 100 || 0
+		}
+	},
+	watch: {
+		tasks: {
+			deep: true,
+			handler() {
+				localStorage.setItem('tasks', JSON.stringify(this.tasks))
+			}
 		}
 	},
 	methods: {
@@ -32,8 +40,12 @@ export default {
 				this.tasks.push(newTask)
 			}
 		},
-		removeTask(index) {
-			this.tasks.splice(i, 1)
+		removeTask(task) {
+			const i = this.tasks.indexOf(task)
+			if (i >= 0) {
+				this.tasks.splice(i, 1)
+			}
+			
 		},
 		changeTaskState(index) {
 			this.tasks[index].isDone = !this.tasks[index].isDone
@@ -41,6 +53,9 @@ export default {
 	}, 
 	created() {
 		bus.onTaskAdded(this.addTask)
+		bus.onTaskRemoved(this.removeTask)
+		const json = localStorage.getItem('tasks')
+		this.tasks = JSON.parse(json) || []
 	}
 }
 </script>

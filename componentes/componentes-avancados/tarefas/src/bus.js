@@ -7,6 +7,12 @@ export default new Vue({
         },
         onTaskAdded(callback) {
             this.$on('taskAdded', callback)
+        },
+        removeTask(task) {
+            this.$emit('taskRemoved', task)
+        },
+        onTaskRemoved(callback) {
+            this.$on('taskRemoved', callback)
         }
     }
 })

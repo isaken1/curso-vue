@@ -1,8 +1,8 @@
 <template>
     <div class="wrapper">
-        <input v-model="taskDescription" class="task-name" type="text" 
+        <input v-model="taskDescription" class="form-element" type="text" 
             placeholder="Adicionar atividade" @keydown.enter="addTask">
-        <button @click="addTask" class="task-add">+</button>
+        <button @click="addTask" class="form-element">+</button>
     </div>
 </template>
 
@@ -16,8 +16,9 @@ export default {
         }
     },
     methods: {
-        addTask(task) {
+        addTask() {
             bus.addTask({ description: this.taskDescription, isDone: false })
+            this.taskDescription = ''
         }
     }
 }
@@ -25,33 +26,29 @@ export default {
 
 <style>
     .wrapper {
-        margin: 50px;
-        display: block;
-        padding: 2px;
+        margin: 35px;
     }
 
-    .wrapper .task-name {
+    .form-element {
         outline: none;
-        font-size: 1.5rem;
+        font-size: 2rem;
         border: 1px solid #FFF;
-        padding: 10px 15px 10px 15px;
+        padding: 5px 10px 8px;
         color: #FFF;
-        width: 1000px;
-        border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
-        background: rgba(255, 255, 255, 0.1);
     }
 
-    .wrapper .task-add {
-        outline: none;
-        font-size: 1.5rem;
-        border: 1px solid #FFF;
-        padding: 10px 15px 10px 15px;
-        color: #FFF;
+    input.form-element {
+        width: 500px;
+        background: #FFF2;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+    }
+
+    button.form-element{
         border-left: none;
         background-color: #2196F3;
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
     }
 
 </style>
