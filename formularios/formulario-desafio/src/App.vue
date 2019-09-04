@@ -5,9 +5,7 @@
 			<form class="painel" v-if="!enviado">
 				<div class="cabecalho">Formulário</div>
 
-				<rotulo nome="Nome completo">
-					<nome-completo v-model="nomeCompleto" />
-				</rotulo>
+				<nome-completo v-model="nomeCompleto" />
 
 				<rotulo nome="Email">
 					<input type="email" placeholder="foo@bar.com" v-model="email">
@@ -18,8 +16,7 @@
 				</rotulo>
 
 				<rotulo nome="Armazenar dados?">
-					<span class="mr-4"><input v-model="armazenar" type="radio" value="Sim"> Sim</span>
-					<span><input v-model="armazenar" type="radio" value="Não"> Não</span>
+					<input v-model="armazenar" type="checkbox">
 				</rotulo>
 
 				<button @click.prevent="enviado = true">Enviar</button>
@@ -63,7 +60,7 @@ export default {
 			nomeCompleto: { nome: '', sobrenome: '' },
 			email: '',
 			senha: '',
-			armazenar: 'Sim'
+			armazenar: true
 		}
 	}
 }
