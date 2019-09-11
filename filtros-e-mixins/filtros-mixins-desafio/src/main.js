@@ -4,11 +4,7 @@ import App from './App.vue'
 Vue.config.productionTip = false
 
 Vue.filter('contar', function(value){
-	let array = value.split(' ') 
-	array.forEach(function (currentValue, index, array) {
-		array[index] = currentValue + ' (' + currentValue.length + ') '
-	})
-	return array.join('')
+	return value.split(' ').map(p => `${p} (${p.length})`).join(' ')
 })
 
 new Vue({

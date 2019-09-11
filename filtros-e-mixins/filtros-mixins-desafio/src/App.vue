@@ -13,6 +13,8 @@
 
 		<!-- Exercício 3 -->
 		<!-- Implementar os exercicios 1 e 2 com propriedade computada -->
+		<p>{{ fraseComVirgulas }}</p>
+		<p>{{ fraseComTamanhos }}</p>
 
 		<!-- Exercício 4 -->
 		<!-- Compartilhe a propriedade computada via mixin -->
@@ -20,7 +22,9 @@
 </template>
 
 <script>
+import fraseMixin from './fraseMixin'
 export default {
+	mixins: [fraseMixin],
 	data() {
 		return {
 			frase: 'Esta é a frase que será usada nos desafios.'
@@ -29,11 +33,6 @@ export default {
 	filters: {
 		retirarEspacos(value) {
 			return value.replace(/ /g, ',')
-		}
-	},
-	computed: {
-		valor() {
-
 		}
 	}
 }
